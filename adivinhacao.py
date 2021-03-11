@@ -1,28 +1,34 @@
-# Projeto jogo de adivinhação - Layout inicial do game
+# Importando o modulo que gera os numeros aleatoriamente
 from random import randint
 
+# Projeto jogo de adivinhação - Layout inicial do game
 print("*********************************")
 print("Bem vindo ao jogo de Adivinhação", end="!\n")
 print("*********************************")
 
+# Declarando as variaveis
 tentativas_restantes = 5
-numero_secreto = randint(0, 10)
+numero_secreto = randint(0, 20)
 chute_correto = False
 
-while tentativas_restantes > 0 and chute_correto == False:
-
-    chute = int(input("\nDigite o seu numero: "))
+# Estrutura principal do programa
+for rodada in range(1, tentativas_restantes + 1):
+    chute = int(input("\nDigite um número entre 1 e 20: "))
     print("Você digitou: {}".format(chute))
 
+    if(chute < 1 or chute > 20):
+        print("Você deve digitar um numero entre 1 e 20!")
+        continue
+
+    # Definindo os criterios de validação
     acertou = (chute == numero_secreto)
     menor = (chute < numero_secreto)
     maior = (chute > numero_secreto)
 
     if acertou:
-        chute_correto = True
-        if chute_correto:
-            print("Parabéns você acertou!")
-            print("\nFim do Jogo")
+        print("Parabéns você acertou!")
+        print("\nFim do Jogo")
+        break
 
     elif menor:
         print("\nO seu valor foi menor que o numero correto, VOCE ERROU!", end="\n")
