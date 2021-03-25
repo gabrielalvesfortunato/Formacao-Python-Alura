@@ -1,71 +1,70 @@
 # Importando o modulo que gera os numeros aleatoriamente
 from random import randint
 
-def jogar():
+def play():
     # Projeto jogo de adivinhação - Layout inicial do game
     print("*********************************")
-    print("Bem vindo ao jogo de Adivinhação", end="!\n")
+    print("  Welcome to the guessing game", end="!\n")
     print("*********************************")
 
     # Declarando as variaveis
-    tentativas_restantes = 0
-    numero_secreto = randint(1, 50)
-    chute_correto = False
-    pontos = 100
+    remaining_attempts = 0
+    secret_number = randint(1, 50)
+    correct_attempt = False
+    points = 100
 
-    print("\nQual o nivel de dificuldade?")
-    print("(1) Facil   (2) Medio   (3) Difícil")
+    print("\nWich difficulty level?")
+    print("(1) Easy   (2) Normal   (3) Hard")
 
-    nivel = int(input("\nDefina o nível: "))
+    level = int(input("\nChoose your difficulty: "))
 
-    if nivel == 1:
-        tentativas_restantes = 10
-    elif nivel == 2:
-        tentativas_restantes = 7
-    elif nivel == 3:
-        tentativas_restantes = 5
+    if level == 1:
+        remaining_attempts = 10
+    elif level == 2:
+        remaining_attempts = 7
+    elif level == 3:
+        remaining_attempts = 5
 
-    print("Número de Tentativas: {}".format(tentativas_restantes))
+    print("Number of attempts: {}".format(remaining_attempts))
 
     # Estrutura principal do programa
-    for rodada in range(1, tentativas_restantes + 1):
-        chute = int(input("\nDigite um número entre 1 e 50: "))
-        print("Você digitou: {}".format(chute))
+    for round in range(1, remaining_attempts + 1):
+        attempt = int(input("\nEnter a number from 1 to 50: "))
+        print("Your enter was: {}".format(attempt))
 
         # Definindo um intervalo valido de valores
-        if(chute < 1 or chute > 50):
-            print("Você deve digitar um numero entre 1 e 50!")
-            tentativas_restantes = tentativas_restantes - 1
-            print("Tentativas Restantes: {}".format(tentativas_restantes))
+        if(attempt < 1 or attempt > 50):
+            print("You should enter a number from 1 to 50!")
+            remaining_attempts = remaining_attempts - 1
+            print("Remaining attempts: {}".format(remaining_attempts))
             continue
 
         # Definindo os criterios de validação
-        acertou = (chute == numero_secreto)
-        menor = (chute < numero_secreto)
-        maior = (chute > numero_secreto)
+        rigth  = (attempt == secret_number)
+        lesser = (attempt < secret_number)
+        bigger = (attempt > secret_number)
 
-        if acertou:
-            print("\nParabéns você acertou e fez um total de {} pontos!".format(pontos))
-            print("\nFim do Jogo")
-            break
+        if rigth:
+            print("\nCongratulations you win and make {} points!".format(points))
+            print("\nGame Finished!")
 
-        elif menor:
-            print("\nO seu valor foi menor que o numero correto, VOCE ERROU!", end="\n")
-            tentativas_restantes = tentativas_restantes - 1
-            pontos_perdidos = abs(numero_secreto - chute)
-            pontos = pontos - pontos_perdidos
-            print("Tentativas Restantes: {}".format(tentativas_restantes))
+        elif lesser:
+            print("\nYour number is smaller than the right number, YOU WRONG!", end="\n")
+            remaining_attempts = remaining_attempts - 1
+            pontos_perdidos = abs(secret_number - attempt)
+            points = points - pontos_perdidos
+            print("Remaining attempts: {}".format(remaining_attempts))
 
-        elif maior:
-            print("\nO seu valor foi maior que o numero correto, VOCE ERROU!", end="\n")
-            tentativas_restantes = tentativas_restantes - 1
-            pontos_perdidos = abs(numero_secreto - chute)
-            pontos = pontos - pontos_perdidos
-            print("Tentativas Restantes: {}".format(tentativas_restantes))
+        elif bigger:
+            print("\nYour number is greater than the right number, YOU WRONG!", end="\n")
+            remaining_attempts = remaining_attempts - 1
+            pontos_perdidos = abs(secret_number - attempt)
+            points = points - pontos_perdidos
+            print("Remaining attempts: {}".format(remaining_attempts))
 
-        if tentativas_restantes == 0:
-            print("\nVOCÊ PERDEU FIM DE JOGO!")
-            print("O NÚMERO SECRETO ERA: {}".format(numero_secreto))
+        if remaining_attempts == 0:
+            print("\nYOU LOSE GAME OVER!")
+            print("THE SECRECT NUMBER WAS: {}".format(secret_number))
 
 if(__name__ == "__main__"):
-    jogar()
+    play()

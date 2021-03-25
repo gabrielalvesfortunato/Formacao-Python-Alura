@@ -2,23 +2,23 @@
 import adivinhacao
 import forca
 
-def escolhe_jogo():
+def choose_game():
     # Projeto de jogos - Layout inicial do game
     print("*********************************")
-    print("*****Escolha o seu jogo!*********", end="\n")
+    print("*****Choose the game!*********", end="\n")
     print("*********************************")
 
     print("\n(1) Forca  (2) Adivinhação")
 
-    jogo = int(input("\nQual Jogo: "))
+    game = int(input("\nWich game: "))
 
-    if(jogo == 1):
-        print("\nJOGANDO FORCA...\n")
-        forca.jogar()
+    if(game == 1):
+        print("\nPLAYING HANGMAN...\n")
+        forca.play()
 
-    elif(jogo == 2):
-        print("\nJOGANDO ADIVINHAÇÃO...\n")
+    elif(game == 2):
+        print("\nPLAYING GUESS GAME...\n")
         adivinhacao.jogar()
 
 if(__name__ == "__main__"):
-    escolhe_jogo()
+    choose_game()
