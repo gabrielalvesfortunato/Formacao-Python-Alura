@@ -11,8 +11,6 @@ def play():
     complete = False
     erros = 0
 
-    print(correct_word)
-
     # Enquanto(True)
     while not hanged and not complete:
 
